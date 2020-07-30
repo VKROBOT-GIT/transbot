@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>transbot_slam</name>
+  <version>1.2.3</version>
+  <description>
+    The transbot_slam package provides roslaunch scripts for starting the SLAM
+  </description>
+  <license>Apache 2.0</license>
+  <maintainer email="jiapeng.feng@vkrobot.com">jiapeng.feng</maintainer>
+  <url type="website">http://wiki.ros.org/transbot_slam</url>
+  <url type="emanual">http://transbot.vkrobot.com</url>
+  <url type="repository">https://github.com/VKROBOT-GIT/transbot</url>
+  <url type="bugtracker">https://github.com/VKROBOT-GIT/transbot/issues</url>
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>roscpp</depend>
+  <depend>sensor_msgs</depend>
+  <exec_depend>transbot_bringup</exec_depend>
+  <!--  <exec_depend>slam_gmapping</exec_depend>
+  <exec_depend>cartographer</exec_depend>
+  <exec_depend>cartographer_ros</exec_depend>
+  <exec_depend>cartographer_ros_msgs</exec_depend>
+  <exec_depend>cartographer_rviz</exec_depend>
+  <exec_depend>hector_mapping</exec_depend>
+  <exec_depend>slam_karto</exec_depend>
+  <exec_depend>frontier_exploration</exec_depend>
+  <exec_depend>navigation_stage</exec_depend> -->
+</package>

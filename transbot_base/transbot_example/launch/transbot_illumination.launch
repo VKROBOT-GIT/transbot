@@ -1,0 +1,4 @@
+<launch>
+  <node pkg="transbot_example" type="transbot_illumination" name="transbot_illumination" output="screen">
+  </node>
+</launch>

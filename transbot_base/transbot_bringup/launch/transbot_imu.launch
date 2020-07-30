@@ -1,0 +1,5 @@
+<launch>
+  
+    <include file="$(find razor_imu_9dof)/launch/razor-pub.launch"/>
+  
+</launch>

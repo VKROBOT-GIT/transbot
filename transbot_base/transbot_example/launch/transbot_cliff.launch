@@ -1,0 +1,4 @@
+<launch>
+  <node pkg="transbot_example" type="transbot_cliff" name="transbot_cliff" output="screen">
+  </node>
+</launch>

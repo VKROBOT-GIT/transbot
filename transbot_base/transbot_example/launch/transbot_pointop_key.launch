@@ -1,0 +1,4 @@
+<launch>
+  <node pkg="transbot_example" type="transbot_pointop_key" name="transbot_pointop_keyboard"  output="screen">
+  </node>
+</launch>

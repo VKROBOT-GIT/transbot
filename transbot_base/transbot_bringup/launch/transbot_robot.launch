@@ -1,0 +1,19 @@
+<launch>
+  <arg name="multi_robot_name" default=""/>
+  <arg name="set_lidar_frame_id" default="base_scan"/>
+
+  <include file="$(find transbot_bringup)/launch/transbot_core.launch">
+    <arg name="multi_robot_name" value="$(arg multi_robot_name)"/>
+  </include>
+  <include file="$(find transbot_bringup)/launch/transbot_lidar.launch">
+    <arg name="set_frame_id" value="$(arg set_lidar_frame_id)"/>
+  </include>
+  <!--include file="$(find transbot_bringup)/launch/transbot_rpicamera.launch">
+  </include-->
+  <include file="$(find transbot_bringup)/launch/transbot_usb_cam.launch">
+  </include>
+  <!--include file="$(find transbot_bringup)/launch/transbot_imu.launch">
+  </include-->
+  <node pkg="transbot_bringup" type="transbot_diagnostics" name="transbot_diagnostics" output="screen"/>
+
+</launch>

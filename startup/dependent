@@ -1,0 +1,17 @@
+#base
+sudo apt-get install ros-melodic-compressed-image-transport ros-melodic-camera-info-manager ros-melodic-serial ros-melodic-rosserial-python ros-melodic-bfl ros-melodic-image-view v4l-utils ros-melodic-image-geometry ros-melodic-tf2-geometry-msgs rospack-tools ros-melodic-turtlebot3-gazebo
+
+#creat_ap
+sudo apt-get install util-linux procps hostapd iproute2 iw haveged dnsmasq
+git clone https://github.com/oblique/create_ap.git
+cd creaet_ap
+sudo make install
+sudo create_ap -n wlan0 Transbot_ap vktransbot
+
+#.bashrc
+source /opt/ros/melodic/setup.bash
+source /home/transbot/transbot_ws/devel/setup.bash
+export ROS_MASTER_URI=http://192.168.1.100:11311
+export ROS_HOSTNAME=192.168.1.100
+
+

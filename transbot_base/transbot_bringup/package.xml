@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>transbot_bringup</name>
+  <version>1.2.3</version>
+  <description>
+    roslaunch scripts for starting the transbot
+  </description>
+  <license>Apache 2.0</license>
+  <maintainer email="jiapeng.feng@vkrobot.com">jiapeng.feng</maintainer>
+  <url type="website">http://wiki.ros.org/transbot_bringup</url>
+  <url type="emanual">http://transbot.vkrobot.com</url>
+  <url type="repository">https://github.com/VKROBOT-GIT/transbot</url>
+  <url type="bugtracker">https://github.com/VKROBOT-GIT/transbot/issues</url>
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>roscpp</depend>
+  <depend>std_msgs</depend>
+  <depend>diagnostic_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>transbot_msgs</depend>
+  <exec_depend>transbot_description</exec_depend>
+  <exec_depend>transbot_teleop</exec_depend>
+  <exec_depend>joint_state_publisher</exec_depend>
+  <exec_depend>robot_state_publisher</exec_depend>
+  <exec_depend>rosserial_python</exec_depend>
+  <exec_depend>hls_lfcd_lds_driver</exec_depend>
+  <!-- <exec_depend>realsense_camera</exec_depend> for transbot Waffle using Intel RealSense Camera -->
+  <!-- <exec_depend>raspicam_node</exec_depend> for transbot Waffle Pi using Raspberry Pi Camera -->
+</package>

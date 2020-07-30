@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>transbot_description</name>
+  <version>1.2.3</version>
+  <description>
+    3D models of the transbot for simulation and visualization
+  </description>
+  <license>Apache 2.0</license>
+  <maintainer email="jiapeng.feng@vkrobot.com">jiapeng.feng</maintainer>
+  <url type="website">http://wiki.ros.org/transbot_description</url>
+  <url type="emanual">http://transbot.VKROBOT.com</url>
+  <url type="repository">https://github.com/VKROBOT-GIT/transbot</url>
+  <url type="bugtracker">https://github.com/VKROBOT-GIT/transbot/issues</url>
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>urdf</depend>
+  <depend>xacro</depend>
+</package>
