@@ -1,6 +1,6 @@
 <launch>
   <!-- Arguments -->
-  <arg name="model" default="$(env TRANSBOT_MODEL)" doc="model type [burger, waffle, waffle_pi, transbot]"/>
+  <arg name="model" default="$(env TRANSBOT_MODEL)" doc="model type [normal, mecanum, omni, helm]"/>
   <arg name="slam_methods" default="gmapping" doc="slam type [gmapping, cartographer, hector, karto, frontier_exploration]"/>
   <arg name="configuration_basename" default="transbot_lds_2d.lua"/>
   <arg name="open_rviz" default="true"/>
