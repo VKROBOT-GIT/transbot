@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>transbot_simulations</name>
+  <version>0.0.1</version>
+  <description>
+    ROS packages for the transbot simulation (meta package)
+  </description>
+  <license>Apache 2.0</license>
+  <author email="jiapeng.feng@vkrobot.com">jiapeng.feng</author>
+  <maintainer email="jiapeng.feng@vkrobot.com">jiapeng.feng</maintainer>
+  <url type="website">http://wiki.ros.org/transbot_simulations</url>
+  <url type="emanual">http://transbot.vkrobot.com</url>
+  <url type="repository">https://github.com/VKROBOT-GIT/transbot_simulations</url>
+  <url type="bugtracker">https://github.com/VKROBOT-GIT/transbot_simulations/issues</url>
+  <buildtool_depend>catkin</buildtool_depend>
+  <exec_depend>transbot_fake</exec_depend>
+  <exec_depend>transbot_gazebo</exec_depend>
+  <export><metapackage/></export>
+</package>

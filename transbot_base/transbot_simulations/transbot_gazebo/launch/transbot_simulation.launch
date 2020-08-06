@@ -1,0 +1,8 @@
+<launch>
+  <arg name="cmd_vel" default="/cmd_vel"/>
+  <arg name="name" default="transbot"/>
+
+  <param name="cmd_vel_topic_name" value="$(arg cmd_vel)"/>
+
+  <node name="$(arg name)_drive" pkg="transbot_gazebo" type="transbot_drive" required="true" output="screen"/>
+</launch>

@@ -1,0 +1,9 @@
+<launch>
+  <arg name="model" default="$(env TRANSBOT_MODEL)" doc="model type [normal, mecanum, omni, helm]"/>
+
+  <include file="$(find transbot_bringup)/launch/transbot_remote.launch">
+    <arg name="model" value="$(arg model)"/>
+  </include>
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find transbot_gazebo)/rviz/transbot_gazebo_model.rviz"/>
+</launch>
