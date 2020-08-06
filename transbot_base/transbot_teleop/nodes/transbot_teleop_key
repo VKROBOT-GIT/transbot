@@ -52,8 +52,8 @@ Moving around:
    a    s    d
         x
 
-w/x : increase/decrease linear velocity (Burger : ~ 0.22, Waffle and Waffle Pi : ~ 0.26)
-a/d : increase/decrease angular velocity (Burger : ~ 2.84, Waffle and Waffle Pi : ~ 1.82)
+w/x : increase/decrease linear velocity (normal : ~ 0.22)
+a/d : increase/decrease angular velocity (narmal : ~ 2.84)
 
 space key, s : force stop
 
@@ -102,7 +102,7 @@ def constrain(input, low, high):
     return input
 
 def checkLinearLimitVelocity(vel):
-    if transbot_model == "burger":
+    if transbot_model == "normal":
       vel = constrain(vel, -BURGER_MAX_LIN_VEL, BURGER_MAX_LIN_VEL)
     elif transbot_model == "waffle" or transbot_model == "waffle_pi":
       vel = constrain(vel, -WAFFLE_MAX_LIN_VEL, WAFFLE_MAX_LIN_VEL)
@@ -112,7 +112,7 @@ def checkLinearLimitVelocity(vel):
     return vel
 
 def checkAngularLimitVelocity(vel):
-    if transbot_model == "burger":
+    if transbot_model == "normal":
       vel = constrain(vel, -BURGER_MAX_ANG_VEL, BURGER_MAX_ANG_VEL)
     elif transbot_model == "waffle" or transbot_model == "waffle_pi":
       vel = constrain(vel, -WAFFLE_MAX_ANG_VEL, WAFFLE_MAX_ANG_VEL)
@@ -128,7 +128,7 @@ if __name__=="__main__":
     rospy.init_node('transbot_teleop')
     pub = rospy.Publisher('cmd_vel', Twist, queue_size=10)
 
-    transbot_model = rospy.get_param("model", "burger")
+    transbot_model = rospy.get_param("model", "normal")
 
     status = 0
     target_linear_vel   = 0.0
