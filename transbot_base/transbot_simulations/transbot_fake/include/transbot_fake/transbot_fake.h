@@ -55,11 +55,11 @@
 #define TORQUE_ENABLE                   1       // Value for enabling the torque of motor
 #define TORQUE_DISABLE                  0       // Value for disabling the torque of motor
 
-class Turtlebot3Fake
+class TransbotFake
 {
  public:
-  Turtlebot3Fake();
-  ~Turtlebot3Fake();
+  TransbotFake();
+  ~TransbotFake();
   bool init();
   bool update();
 
@@ -111,4 +111,4 @@ class Turtlebot3Fake
   void updateTF(geometry_msgs::TransformStamped& odom_tf);
 };
 
-#endif // TURTLEBOT3_FAKE_H_
+#endif // TRANSBOT_FAKE_H_
