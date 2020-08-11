@@ -1,0 +1,8 @@
+<launch>
+  <!-- launch transbot_autorace_camera_pi.launch in the raspberry pi before launch this file -->
+  <!-- launch transbot_bringup pkg - transbot_robot.launch in the raspberry pi before launch this file -->
+
+    <!-- image brightness & contrast compensation of ground-projected image -->
+    <node pkg="transbot_autorace_traffic_light_core" type="core_node_controller" name="core_node_controller" output="screen" />
+    <node pkg="transbot_autorace_traffic_light_core" type="core_mode_decider" name="core_mode_decider" output="screen" />
+</launch>
