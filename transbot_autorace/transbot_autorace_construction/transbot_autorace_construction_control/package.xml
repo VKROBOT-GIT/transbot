@@ -6,10 +6,10 @@
     TransBot AutoRace ROS package that controls TransBot Auto
   </description>
   <license>Apache 2.0</license>
-  <author email="jiapeng.feng@robotis.com">jiapeng.feng</author>
-  <maintainer email="jiapeng.feng@robotis.com">jiapeng.feng</maintainer>
+  <author email="jiapeng.feng@vkrobot.com">jiapeng.feng</author>
+  <maintainer email="jiapeng.feng@vkrobot.com">jiapeng.feng</maintainer>
   <url type="website">http://wiki.ros.org/transbot_autorace</url>
-  <url type="emanual">http://transbot.robotis.com</url>
+  <url type="emanual">http://transbot.vkrobot.com</url>
   <url type="repository">https://github.com/VKROBOT-GIT/transbot_autorace</url>
   <url type="bugtracker">https://github.com/VKROBOT-GIT/transbot_autorace/issues</url>
   <buildtool_depend>catkin</buildtool_depend>
