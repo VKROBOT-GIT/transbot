@@ -1,0 +1,4 @@
+<launch>
+  <node pkg="transbot_autorace_intersection_control" type="control_intersection" name="control_intersection" output="screen">
+  </node>
+</launch>

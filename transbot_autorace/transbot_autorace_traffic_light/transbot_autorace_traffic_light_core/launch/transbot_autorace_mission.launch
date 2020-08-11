@@ -1,0 +1,3 @@
+<launch>
+   <node pkg="transbot_autorace_traffic_light_core" type="core_node_mission" name="core_node_mission" output="screen" />
+</launch>

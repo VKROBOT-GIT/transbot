@@ -1,0 +1,34 @@
+<launch>
+  <!-- do export TRANSBOT_MODEL=burger before launch transbot_autorace_core.launch -->
+  <!-- tunnel control -->
+  <!-- Arguments -->
+  <arg name="model" default="$(env TRANSBOT_MODEL)" doc="model type [normal, mecanum, omni, helm]"/>
+  <arg name="map_file" default="$(find transbot_autorace_tunnel_control)/maps/tunnel.yaml"/>
+  <arg name="open_rviz" default="true"/>
+
+  <!-- Transbot -->
+  <include file="$(find transbot_bringup)/launch/transbot_remote.launch">
+    <arg name="model" value="$(arg model)" />
+  </include>
+
+  <!-- Map server -->
+  <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)"/>
+
+  <!-- AMCL -->
+  <include file="$(find transbot_navigation)/launch/amcl.launch">
+    <arg name="initial_pose_x" default="-1.8"/>
+    <arg name="initial_pose_y" default="0.00"/>
+    <arg name="initial_pose_a" default="80.0"/>
+  </include>
+
+  <!-- move_base -->
+  <include file="$(find transbot_navigation)/launch/move_base.launch">
+    <arg name="model" value="$(arg model)" />
+  </include>
+
+  <!-- rviz -->
+  <group if="$(arg open_rviz)"> 
+    <node pkg="rviz" type="rviz" name="rviz" required="true"
+          args="-d $(find transbot_navigation)/rviz/transbot_navigation.rviz"/>
+  </group>
+</launch>
