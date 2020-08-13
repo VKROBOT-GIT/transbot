@@ -1,0 +1,20 @@
+<launch>
+  <!-- run usb camera -->
+  <node name="usb_cam" pkg="usb_cam" type="usb_cam_node" output="screen" >
+    <param name="video_device" value="/dev/video0" />
+    <param name="image_width" value="640" />
+    <param name="image_height" value="480" />
+    <param name="pixel_format" value="yuyv" />
+    <param name="camera_frame_id" value="camera" />
+    <param name="io_method" value="mmap"/>
+  </node>
+  <!-- run pi camera -->
+  <node pkg="raspicam_node" type="raspicam_node" name="camera" output="screen">
+    <rosparam command="load" file="$(find transbot_autorace_traffic_light_camera)/calibration/camera_calibration/camera.yaml" />
+    <param name="camera_info_url" value="package://transbot_autorace_traffic_light_camera/calibration/intrinsic_calibration/camerav2_320x240_30fps.yaml"/>
+    <param name="width" value="320"/>
+    <param name="height" value="240"/>
+    <param name="framerate" value="30"/>
+    <param name="camera_frame_id" value="camera"/>
+  </node>
+</launch>
