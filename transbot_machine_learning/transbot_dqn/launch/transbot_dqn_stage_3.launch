@@ -1,0 +1,7 @@
+<launch>
+  <arg name="stage" default="3"/>
+  <param name="stage_number"  value="$(arg stage)"/>
+  <node pkg="transbot_dqn" type="transbot_dqn_stage_3" name="transbot_dqn_stage_3" output="screen" />
+
+  <node pkg="transbot_dqn"  type="moving_obstacle" name="moving_obstacle" output="screen" />
+</launch>

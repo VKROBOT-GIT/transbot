@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>transbot_machine_learning</name>
+  <version>1.0.0</version>
+  <description>
+    This metapackage includes various ROS packages using transbot and machine learning.
+  </description>
+  <license>Apache 2.0</license>
+  <author email="jiapeng.feng@vkrobot.com">jiapeng.feng</author>
+  <maintainer email="jiapeng.feng@vkrobot.com">jiapeng.feng</maintainer>
+  <url type="website">http://wiki.ros.org/transbot_machine_learning</url>
+  <url type="emanual">http://transbot.vkrobot.com</url>
+  <url type="repository">https://github.com/vkrobot-GIT/transbot_machine_learning</url>
+  <url type="bugtracker">https://github.com/vkrobot-GIT/transbot_machine_learning/issues</url>
+  <buildtool_depend>catkin</buildtool_depend>
+  <exec_depend>transbot_dqn</exec_depend>
+  <export><metapackage/></export>
+</package>
