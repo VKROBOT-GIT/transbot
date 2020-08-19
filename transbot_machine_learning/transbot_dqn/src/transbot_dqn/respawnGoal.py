@@ -29,7 +29,7 @@ class Respawn():
     def __init__(self):
         self.modelPath = os.path.dirname(os.path.realpath(__file__))
         self.modelPath = self.modelPath.replace('transbot_machine_learning/transbot_dqn/src/transbot_dqn',
-                                                'transbot_simulations/transbot_gazebo/models/transbot_square/goal_box/model.sdf')
+                                                'transbot_base/transbot_simulations/transbot_gazebo/models/transbot_square/goal_box/model.sdf')
         self.f = open(self.modelPath, 'r')
         self.model = self.f.read()
         self.stage = rospy.get_param('/stage_number')

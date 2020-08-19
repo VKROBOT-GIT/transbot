@@ -2,7 +2,7 @@
 # Set minimum required version of cmake, project name and compile options
 ################################################################################
 cmake_minimum_required(VERSION 2.8.3)
-project(turtlebot3_dqn)
+project(transbot_dqn)
 
 ################################################################################
 # Find catkin packages and libraries for catkin and system dependencies
@@ -37,10 +37,10 @@ catkin_package(
 # Install
 ################################################################################
 catkin_install_python(PROGRAMS
-  nodes/turtlebot3_dqn_stage_1
-  nodes/turtlebot3_dqn_stage_2
-  nodes/turtlebot3_dqn_stage_3
-  nodes/turtlebot3_dqn_stage_4
+  nodes/transbot_dqn_stage_1
+  nodes/transbot_dqn_stage_2
+  nodes/transbot_dqn_stage_3
+  nodes/transbot_dqn_stage_4
   nodes/result_graph
   nodes/action_graph
   nodes/moving_obstacle
