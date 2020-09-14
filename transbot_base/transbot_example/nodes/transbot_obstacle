@@ -35,13 +35,14 @@ class Obstacle():
     def get_scan(self):
         scan = rospy.wait_for_message('scan', LaserScan)
         scan_filter = []
+	scan_filter2 = []
        
         samples = len(scan.ranges)  # The number of samples is defined in 
                                     # transbot_<model>.gazebo.xacro file,
                                     # the default is 360.
         samples_view = 1            # 1 <= samples_view <= samples
         
-        if samples_view > samples:
+        if samples_view < samples:
             samples_view = samples
 
         if samples_view is 1:
@@ -58,10 +59,18 @@ class Obstacle():
         for i in range(samples_view):
             if scan_filter[i] == float('Inf'):
                 scan_filter[i] = 3.5
+                rospy.loginfo('inf...')
             elif math.isnan(scan_filter[i]):
                 scan_filter[i] = 0
+                rospy.loginfo('nan...')
+
+	#hepei add 20200914
+	for i in scan_filter:
+	    if i != 0:
+		scan_filter2.append(i)
+	#end
         
-        return scan_filter
+        return scan_filter2
 
     def obstacle(self):
         twist = Twist()
