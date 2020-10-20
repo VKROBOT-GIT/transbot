@@ -1,5 +1,5 @@
 #base
-sudo apt-get install ros-melodic-compressed-image-transport ros-melodic-camera-info-manager ros-melodic-serial ros-melodic-rosserial-python ros-melodic-bfl ros-melodic-image-view v4l-utils ros-melodic-image-geometry ros-melodic-tf2-geometry-msgs rospack-tools ros-melodic-turtlebot3-gazebo ros-melodic-rqt python-pyqtgraph ntpdate
+sudo apt-get install ros-melodic-compressed-image-transport ros-melodic-camera-info-manager ros-melodic-serial ros-melodic-rosserial-python ros-melodic-bfl ros-melodic-image-view v4l-utils ros-melodic-image-geometry ros-melodic-tf2-geometry-msgs rospack-tools ros-melodic-turtlebot3-gazebo ros-melodic-rqt python-pyqtgraph ros-melodic-move-base ntpdate
 
 #creat_ap
 sudo apt-get install util-linux procps hostapd iproute2 iw haveged dnsmasq
