@@ -1,8 +1,0 @@
-[Plymouth Theme]
-Name=mint-galaxy
-Description=A theme that features the mint-galaxy logo.
-ModuleName=script
-
-[script]
-ImageDir=/usr/share/plymouth/themes/mint-galaxy
-ScriptFile=/usr/share/plymouth/themes/mint-galaxy/mint-galaxy.script
