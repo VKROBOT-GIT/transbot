@@ -212,10 +212,8 @@ class transbotAction(object):
             rospy.loginfo('%s: Succeeded' % self._action_name)
             self._as.set_succeeded(self._result)
 
-    def shutdown():
-        self.twist.linear.x = 0.0
-        self.cmd_pub.publish(self.twist)
-        rospy.sleep(3)
+    def shutdown(self):
+        rospy.sleep(2)
         rospy.loginfo("exit")
 
 if __name__ == '__main__':
