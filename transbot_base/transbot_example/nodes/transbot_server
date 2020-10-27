@@ -25,6 +25,7 @@ from sensor_msgs.msg import JointState
 from transbot_msgs.msg import SensorState
 import transbot_example.msg 
 import numpy as np
+from tf.transformations import euler_from_quaternion
 
 class transbotAction(object):
     _feedback = transbot_example.msg.transbotActionFeedback()
@@ -38,11 +39,17 @@ class transbotAction(object):
         self.odom_sub = rospy.Subscriber('odom', Odometry, self.get_odom)
         self.init_stats = True
         self._as.start()
+        self.target_rad = 0
         rospy.loginfo('Server On')
+
 
     def get_odom(self, odom):
         self.position = Point()
         self.position = odom.pose.pose.position
+        orientation_q = odom.pose.pose.orientation
+        orientation_list = [orientation_q.x, orientation_q.y, orientation_q.z, orientation_q.w]
+        (roll,pitch,yaw) = euler_from_quaternion(orientation_list)
+        self.yaw = yaw
 
     def get_state(self, data):
         TICK2RAD = 0.001533981
@@ -57,49 +64,88 @@ class transbotAction(object):
         self.right_encoder = encoder
 
     def turn(self, angle):
-        if self.init_stats:
-            self.init_right_encoder = self.right_encoder
-            self.init_stats = False
-        diff_encoder = (np.deg2rad(angle) * 0.080) / (0.207 / 4096)
-        while (abs(self.init_right_encoder - self.right_encoder) < abs(diff_encoder)):
-            if diff_encoder >= 0:
-                self.twist.angular.z = -0.5
-            else:
-                self.twist.angular.z = 0.5
-
+        #angle must inside [-180 180] 
+        rospy.loginfo("turn")
+        self.target_rad += angle * np.math.pi /180
+        pi = np.math.pi
+        if self.target_rad > pi:
+            self.target_rad -= 2 * pi
+        if self.target_rad < -pi:
+            self.target_rad += 2*pi
+        err = self.target_rad - self.yaw
+        if err > pi:
+            err = 2 * pi - err
+        if err < -pi:
+            err = -2 * pi - err
+        err_sum = 0
+        while not rospy.is_shutdown() and abs(err) > 0.01:
+            err_sum += abs(err)
+            w = err / pi * 10 + err_sum * 0.002
+            if w > 0.1:
+                w = 0.1
+            if w < -0.1:
+                w = -0.1
+            self.twist.linear.x = 0
+            self.twist.angular.z = abs(w) 
             self.cmd_pub.publish(self.twist)
             self.r.sleep()
+            err = self.target_rad - self.yaw
+            if err > pi:
+                err = 2 * pi - err
+            if err < -pi:
+                err = -2 * pi - err
         self.init_stats = True
+        self.twist.linear.x = 0
         self.twist.angular.z = 0
         self.cmd_pub.publish(self.twist)
         self.r.sleep()
+        rospy.loginfo("after turn")
+        rospy.loginfo("yaw : %f" % self.yaw)
+        rospy.loginfo("x : %f" % self.position.x)
+        rospy.loginfo("y : %f" % self.position.y)
+
+
 
     def go_front(self, lenght, count):
+        rospy.loginfo("go")
         if count == 0:
-            while self.position.x  < lenght:
-                self.twist.linear.x = 0.1
+            while self.position.x  < lenght and not rospy.is_shutdown():
+                self.twist.linear.x = 0.05
                 self.twist.angular.z = 0.0
                 self.cmd_pub.publish(self.twist)
                 self.r.sleep()
+            rospy.loginfo("after 0")
+            rospy.loginfo("x : %f" % self.position.x)
+            rospy.loginfo("y : %f" % self.position.y)
         elif count == 1:
-            while self.position.y < lenght:
-                self.twist.linear.x = 0.1
+            while self.position.y < lenght and not rospy.is_shutdown():
+                self.twist.linear.x = 0.05
                 self.twist.angular.z = 0.0
                 self.cmd_pub.publish(self.twist)
                 self.r.sleep()
+            rospy.loginfo("after 1")
+            rospy.loginfo("x : %f" % self.position.x)
+            rospy.loginfo("y : %f" % self.position.y)
         elif count == 2:
-            while self.position.x > lenght:
-                self.twist.linear.x = 0.1
+            while self.position.x > lenght and not rospy.is_shutdown():
+                self.twist.linear.x = 0.05
                 self.twist.angular.z = 0.0
                 self.cmd_pub.publish(self.twist)
                 self.r.sleep()
+            rospy.loginfo("after 2")
+            rospy.loginfo("x : %f" % self.position.x)
+            rospy.loginfo("y : %f" % self.position.y)
         else:
-            while self.position.y > lenght:
-                self.twist.linear.x = 0.1
+            while self.position.y > lenght and not rospy.is_shutdown():
+                self.twist.linear.x = 0.05
                 self.twist.angular.z = 0.0
                 self.cmd_pub.publish(self.twist)
                 self.r.sleep()
+            rospy.loginfo("after 3")
+            rospy.loginfo("x : %f" % self.position.x)
+            rospy.loginfo("y : %f" % self.position.y)
         self.twist.linear.x = 0.0
+        self.twist.angular.z = 0.0
         self.cmd_pub.publish(self.twist)
         self.r.sleep()
 
@@ -119,22 +165,30 @@ class transbotAction(object):
         for i in range(patrol_count):
             if mode == 1:
                 area = [0,0,0,0]
+                angle = [90,90,90,90]
                 area[0] = goal.goal.y
                 area[1] = goal.goal.y
+                rospy.loginfo(goal.goal.y)
                 for i in range(4):
+                    if rospy.is_shutdown():
+                        return
                     self.go_front(area[i], i)
                     self.r1.sleep()
-                    self.turn(-90)
+                    self.turn(angle[i])
 
             elif mode == 2:
                 area = [0, 0, 0]
                 area[0] = goal.goal.y
-                area[1] = goal.goal.y
+                area[1] = goal.goal.y * 1.732 / 2
                 for i in range(3):
+                    if rospy.is_shutdown():
+                        return
                     self.go_front(area[i], i)
-                    self.turn(-120)
+                    self.turn(120)
             elif mode == 3:
                 while(circle_mode):
+                    if rospy.is_shutdown():
+                        return
                     if self.position.x < -goal.goal.y / 2:
                         half_patrol = True
                         count_flag = True
@@ -158,8 +212,13 @@ class transbotAction(object):
             rospy.loginfo('%s: Succeeded' % self._action_name)
             self._as.set_succeeded(self._result)
 
+    def shutdown(self):
+        rospy.sleep(2)
+        rospy.loginfo("exit")
+
 if __name__ == '__main__':
     rospy.init_node('transbot')
     server = transbotAction(rospy.get_name())
+    rospy.on_shutdown(server.shutdown)
     rospy.spin()
     

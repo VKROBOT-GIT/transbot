@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package format="2">
   <name>transbot_description</name>
-  <version>1.2.3</version>
+  <version>0.1.1</version>
   <description>
     3D models of the transbot for simulation and visualization
   </description>
