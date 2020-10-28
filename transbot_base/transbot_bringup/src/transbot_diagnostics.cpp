@@ -26,10 +26,10 @@
 #include <transbot_msgs/VersionInfo.h>
 #include <string>
 
-#define SOFTWARE_VERSION "1.2.3"
-#define HARDWARE_VERSION "2020.03.16"
-#define FIRMWARE_VERSION_MAJOR_NUMBER 1
-#define FIRMWARE_VERSION_MINOR_NUMBER 2
+#define SOFTWARE_VERSION "0.1.1"
+#define HARDWARE_VERSION "2020.10.27"
+#define FIRMWARE_VERSION_MAJOR_NUMBER 0
+#define FIRMWARE_VERSION_MINOR_NUMBER 1
 
 ros::Publisher tb3_version_info_pub;
 ros::Publisher tb3_diagnostics_pub;
@@ -97,12 +97,12 @@ void setBatteryDiagnosis(uint8_t level, std::string message)
 
 void setLDSDiagnosis(uint8_t level, std::string message)
 {
-  setDiagnosisMsg(&LDS_state, level, "Lidar Sensor", message, "HLS-LFCD-LDS");
+  setDiagnosisMsg(&LDS_state, level, "Lidar Sensor", message, "Ydlidar X2");
 }
 
 void setButtonDiagnosis(uint8_t level, std::string message)
 {
-  setDiagnosisMsg(&button_state, level, "Analog Button", message, "OpenCR Button");
+  setDiagnosisMsg(&button_state, level, "Analog Button", message, "VKESRC Button");
 }
 
 void imuMsgCallback(const sensor_msgs::Imu::ConstPtr &msg)
