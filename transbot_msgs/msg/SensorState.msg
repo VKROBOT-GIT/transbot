@@ -37,6 +37,8 @@ float32 illumination
 uint8   led
 uint8  button
 bool   torque
-int32  left_encoder    # (-2,147,483,648 ~ 2,147,483,647)
-int32  right_encoder   # (-2,147,483,648 ~ 2,147,483,647)
+int32  left_rear_encoder    # (-2,147,483,648 ~ 2,147,483,647)
+int32  right_rear_encoder   # (-2,147,483,648 ~ 2,147,483,647)
+int32  left_front_encoder    # (-2,147,483,648 ~ 2,147,483,647)
+int32  right_front_encoder   # (-2,147,483,648 ~ 2,147,483,647)
 float32  battery
