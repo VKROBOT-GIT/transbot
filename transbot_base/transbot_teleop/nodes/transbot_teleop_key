@@ -35,11 +35,11 @@ if os.name == 'nt':
 else:
   import tty, termios
 
-BURGER_MAX_LIN_VEL = 0.22
-BURGER_MAX_ANG_VEL = 2.84
+NORMAL_MAX_LIN_VEL = 0.22
+NORMAL_MAX_ANG_VEL = 2.84
 
-WAFFLE_MAX_LIN_VEL = 0.26
-WAFFLE_MAX_ANG_VEL = 1.82
+MECANUM_MAX_LIN_VEL = 0.26
+MECANUM_MAX_ANG_VEL = 1.82
 
 LIN_VEL_STEP_SIZE = 0.01
 ANG_VEL_STEP_SIZE = 0.1
@@ -103,21 +103,21 @@ def constrain(input, low, high):
 
 def checkLinearLimitVelocity(vel):
     if transbot_model == "normal":
-      vel = constrain(vel, -BURGER_MAX_LIN_VEL, BURGER_MAX_LIN_VEL)
-    elif transbot_model == "waffle" or transbot_model == "waffle_pi":
-      vel = constrain(vel, -WAFFLE_MAX_LIN_VEL, WAFFLE_MAX_LIN_VEL)
+      vel = constrain(vel, -NORMAL_MAX_LIN_VEL, NORMAL_MAX_LIN_VEL)
+    elif transbot_model == "mecanum" or transbot_model == "onmi":
+      vel = constrain(vel, -MECANUM_MAX_LIN_VEL, MECANUM_MAX_LIN_VEL)
     else:
-      vel = constrain(vel, -BURGER_MAX_LIN_VEL, BURGER_MAX_LIN_VEL)
+      vel = constrain(vel, -NORMAL_MAX_LIN_VEL, NORMAL_MAX_LIN_VEL)
 
     return vel
 
 def checkAngularLimitVelocity(vel):
     if transbot_model == "normal":
-      vel = constrain(vel, -BURGER_MAX_ANG_VEL, BURGER_MAX_ANG_VEL)
-    elif transbot_model == "waffle" or transbot_model == "waffle_pi":
-      vel = constrain(vel, -WAFFLE_MAX_ANG_VEL, WAFFLE_MAX_ANG_VEL)
+      vel = constrain(vel, -NORMAL_MAX_ANG_VEL, NORMAL_MAX_ANG_VEL)
+    elif transbot_model == "mecanum" or transbot_model == "onmi":
+      vel = constrain(vel, -MECANUM_MAX_ANG_VEL, MECANUM_MAX_ANG_VEL)
     else:
-      vel = constrain(vel, -BURGER_MAX_ANG_VEL, BURGER_MAX_ANG_VEL)
+      vel = constrain(vel, -NORMAL_MAX_ANG_VEL, NORMAL_MAX_ANG_VEL)
 
     return vel
 
