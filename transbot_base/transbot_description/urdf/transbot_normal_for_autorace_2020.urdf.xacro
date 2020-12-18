@@ -8,12 +8,12 @@
   <joint name="base_joint" type="fixed">
     <parent link="base_footprint"/>
     <child link="base_link"/>
-    <origin xyz="0.0 0.0 0.010" rpy="0 0 0"/>
+    <origin xyz="0.0 0.0 0.015" rpy="0 0 0"/>
   </joint>
 
   <link name="base_link">
     <visual>
-      <origin xyz="-0.04575 0 0.0" rpy="0 0 0"/>
+      <origin xyz="-0.053 0 0.0" rpy="0 0 0"/>
       <geometry>
         <mesh filename="package://transbot_description/meshes/bases/normal_base.stl" scale="0.001 0.001 0.001"/>
       </geometry>
@@ -36,18 +36,19 @@
     </inertial>
   </link>
 
+
   <joint name="wheel_left_rear_joint" type="continuous">
     <parent link="base_link"/>
     <child link="wheel_left_link"/>
-    <origin xyz="0.0 0.08 0.023" rpy="-1.5707 0 0"/>
+    <origin xyz="0.0 0.1155 0.01625" rpy="-1.57 0 0"/>
     <axis xyz="0 0 1"/>
   </joint>
 
   <link name="wheel_left_link">
     <visual>
-      <origin xyz="0 0 0" rpy="1.5707 0 0"/>
+      <origin xyz="0 0 0" rpy="1.57 0 0"/>
       <geometry>
-        <mesh filename="package://transbot_description/meshes/wheels/left_tire.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://transbot_description/meshes/wheels/left_normal.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="dark"/>
     </visual>
@@ -61,25 +62,25 @@
 
     <inertial>
       <origin xyz="0 0 0" />
-      <mass value="2.8498940" />
-      <inertia ixx="1.1175580e-03" ixy="-4.2369783e-08" ixz="-5.9381719e-07"
-               iyy="1.1192413e-03" iyz="-1.4400107e-08"
-               izz="2.0712558e-03" />
+      <mass value="2.8498940e-02" />
+      <inertia ixx="1.1175580e-05" ixy="-4.2369783e-11" ixz="-5.9381719e-09"
+               iyy="1.1192413e-05" iyz="-1.4400107e-11"
+               izz="2.0712558e-05" />
       </inertial>
   </link>
 
   <joint name="wheel_right_rear_joint" type="continuous">
     <parent link="base_link"/>
     <child link="wheel_right_link"/>
-    <origin xyz="0.0 -0.080 0.023" rpy="-1.5707 0 0"/>
+    <origin xyz="0.0 -0.1155 0.01625" rpy="-1.57 0 0"/>
     <axis xyz="0 0 1"/>
   </joint>
 
   <link name="wheel_right_link">
     <visual>
-      <origin xyz="0 0 0" rpy="1.5707 0 0"/>
+      <origin xyz="0 0 0" rpy="1.57 0 0"/>
       <geometry>
-        <mesh filename="package://transbot_description/meshes/wheels/right_tire.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://transbot_description/meshes/wheels/right_normal.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="dark"/>
     </visual>
@@ -93,17 +94,17 @@
 
     <inertial>
       <origin xyz="0 0 0" />
-      <mass value="2.8498940" />
-      <inertia ixx="1.1175580e-03" ixy="-4.2369783e-08" ixz="-5.9381719e-07"
-               iyy="1.1192413e-03" iyz="-1.4400107e-08"
-               izz="2.0712558e-03" />
+      <mass value="2.8498940e-02" />
+      <inertia ixx="1.1175580e-05" ixy="-4.2369783e-11" ixz="-5.9381719e-09"
+               iyy="1.1192413e-05" iyz="-1.4400107e-11"
+               izz="2.0712558e-05" />
       </inertial>
   </link>
 
 <joint name="wheel_left_front_joint" type="continuous">
     <parent link="base_link"/>
     <child link="wheel_left_front_link"/>
-    <origin xyz="0.0 0.1105 0.01625" rpy="-1.57 0 0"/>
+    <origin xyz="-0.0915 0.1155 0.01625" rpy="-1.57 0 0"/>
     <axis xyz="0 0 1"/>
   </joint>
 
@@ -113,12 +114,13 @@
   <joint name="wheel_right_front_joint" type="continuous">
     <parent link="base_link"/>
     <child link="wheel_right_front_link"/>
-    <origin xyz="0.0 -0.1105 0.01625" rpy="-1.57 0 0"/>
+    <origin xyz="-0.0915 -0.1155 0.01625" rpy="-1.57 0 0"/>
     <axis xyz="0 0 1"/>
   </joint>
 
   <link name="wheel_right_front_link">
   </link>
+
 
   <joint name="caster_back_joint" type="fixed">
     <parent link="base_link"/>
@@ -151,17 +153,17 @@
 
   <link name="imu_link"/>
 
-  <joint name="scan_joint" type="fixed">
+ <joint name="scan_joint" type="fixed">
     <parent link="base_link"/>
     <child link="base_scan"/>
-    <origin xyz="0.0 0 0.1925" rpy="0 0 0"/>
+    <origin xyz="0.0 0 0.192" rpy="0 0 0"/>
   </joint>
 
   <link name="base_scan">
     <visual>
       <origin xyz="0 0 0.0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://transbot_description/meshes/sensors/yd-g4.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://transbot_description/meshes/sensors/yd-x2l.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="dark"/>
     </visual>
@@ -183,14 +185,14 @@
   </link>
 
   <joint name="camera_dummy_joint" type="fixed">
-    <origin xyz="0.03465 0 0.09339" rpy="0 0 0"/>
+    <origin xyz="0.0332 0.0 0.0934" rpy="0 0 0"/>
     <parent link="base_link"/>
     <child link="camera_dummy_link"/>
   </joint>
 
   <link name="camera_dummy_link">
     <collision>
-      <origin xyz="0.005 0.000 0.013" rpy="0 0 0"/>
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
       <geometry>
         <box size="0.015 0.030 0.027"/>
       </geometry>
@@ -198,7 +200,7 @@
   </link>
 
   <joint name="camera_joint" type="fixed">
-    <origin xyz="0.0446 0.000 0.000" rpy="0 0 0"/>
+    <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
     <parent link="camera_dummy_link"/>
     <child link="camera_frame"/>
   </joint>
