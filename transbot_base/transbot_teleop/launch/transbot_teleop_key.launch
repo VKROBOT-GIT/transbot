@@ -4,5 +4,6 @@
   
   <!-- transbot_teleop_key already has its own built in velocity smoother -->
   <node pkg="transbot_teleop" type="transbot_teleop_key" name="transbot_teleop_keyboard"  output="screen">
+    <param name="model" value="$(arg model)" />
   </node>
 </launch>
