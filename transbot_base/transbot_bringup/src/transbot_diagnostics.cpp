@@ -26,7 +26,7 @@
 #include <transbot_msgs/VersionInfo.h>
 #include <string>
 
-#define SOFTWARE_VERSION "0.1.1"
+#define SOFTWARE_VERSION "1.1.1"
 #define HARDWARE_VERSION "2020.10.27"
 #define FIRMWARE_VERSION_MAJOR_NUMBER 0
 #define FIRMWARE_VERSION_MINOR_NUMBER 1
