@@ -7,9 +7,14 @@ project(usb_cam)
 find_package(catkin REQUIRED COMPONENTS image_transport roscpp std_msgs std_srvs sensor_msgs camera_info_manager)
 
 ## pkg-config libraries
-find_package(PkgConfig REQUIRED)
-pkg_check_modules(avcodec libavcodec REQUIRED)
-pkg_check_modules(swscale libswscale REQUIRED)
+##find_package(PkgConfig REQUIRED)
+##pkg_check_modules(avcodec libavcodec REQUIRED)
+##pkg_check_modules(swscale libswscale REQUIRED)
+set(avutil_INCLUDE_DIRS  ffmpeg_build/include/libavutil)
+set(avcodec_INCLUDE_DIRS ffmpeg_build/include/libavcodec)
+set(swscale_INCLUDE_DIRS ffmpeg_build/include/libswscale)
+set(ffmpeg_INCLUDE_DIRS  ffmpeg_build/include/)
+
 
 ###################################################
 ## Declare things to be passed to other projects ##
@@ -26,6 +31,8 @@ catkin_package(
 ###########
 ## Build ##
 ###########
+link_directories(
+${catkin_LIB_DIRs} ffmpeg_build/lib/)
 
 include_directories(include
   ${catkin_INCLUDE_DIRS}
@@ -36,18 +43,18 @@ include_directories(include
 ## Build the USB camera library
 add_library(${PROJECT_NAME} src/usb_cam.cpp)
 target_link_libraries(${PROJECT_NAME}
-  ${avcodec_LIBRARIES}
-  ${swscale_LIBRARIES}
-  ${catkin_LIBRARIES}
+  ${catkin_LIBRARIES} libavutil.so
+  ${catkin_LIBRARIES} libavcodec.so
+  ${catkin_LIBRARIES} libswscale.so
 )
 
 ## Declare a cpp executable
 add_executable(${PROJECT_NAME}_node nodes/usb_cam_node.cpp)
 target_link_libraries(${PROJECT_NAME}_node
   ${PROJECT_NAME}
-  ${avcodec_LIBRARIES}
-  ${swscale_LIBRARIES}
-  ${catkin_LIBRARIES}
+  ${catkin_LIBRARIES} libavutil.so
+  ${catkin_LIBRARIES} libavcodec.so
+  ${catkin_LIBRARIES} libswscale.so
 )
 
 #############
