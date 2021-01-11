@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: transbot_miniarm_description
+    relative_path: urdf/transbot_miniarm_robot.urdf.xacro
+    xacro_args: ""
+  SRDF:
+    relative_path: config/transbot_miniarm.srdf
+  CONFIG:
+    author_name: Ryan Shim
+    author_email: jhshim@robotis.com
+    generated_timestamp: 1581642305

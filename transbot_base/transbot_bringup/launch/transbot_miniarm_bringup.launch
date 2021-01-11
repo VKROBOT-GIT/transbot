@@ -1,0 +1,3 @@
+<launch>
+  <node pkg="transbot_bringup" type="transbot_miniarm_bringup" name="transbot_miniarm_bringup" output="screen"/>
+</launch>

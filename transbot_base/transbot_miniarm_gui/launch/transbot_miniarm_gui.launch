@@ -1,0 +1,3 @@
+<launch>
+  <node pkg="transbot_miniarm_gui" type="transbot_miniarm_gui" name="transbot_miniarm_gui" output="screen"/>
+</launch>

@@ -16,6 +16,10 @@ find_package(catkin REQUIRED COMPONENTS
   sensor_msgs
   diagnostic_msgs
   transbot_msgs
+  actionlib
+  control_msgs
+  trajectory_msgs
+  moveit_msgs
 )
 
 ################################################################################
@@ -34,13 +38,14 @@ find_package(catkin REQUIRED COMPONENTS
 # Declare catkin specific configuration to be passed to dependent projects
 ################################################################################
 catkin_package(
-  CATKIN_DEPENDS roscpp std_msgs sensor_msgs diagnostic_msgs transbot_msgs
+  CATKIN_DEPENDS roscpp std_msgs sensor_msgs diagnostic_msgs transbot_msgs actionlib control_msgs trajectory_msgs moveit_msgs
 )
 
 ################################################################################
 # Build
 ################################################################################
 include_directories(
+  include
   ${catkin_INCLUDE_DIRS}
 )
 
@@ -48,10 +53,18 @@ add_executable(transbot_diagnostics src/transbot_diagnostics.cpp)
 add_dependencies(transbot_diagnostics ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 target_link_libraries(transbot_diagnostics ${catkin_LIBRARIES})
 
+add_executable(transbot_miniarm_bringup src/transbot_miniarm_bringup.cpp)
+add_dependencies(transbot_miniarm_bringup ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(transbot_miniarm_bringup ${catkin_LIBRARIES})
+
 ################################################################################
 # Install
 ################################################################################
 install(TARGETS transbot_diagnostics
+  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
+install(TARGETS transbot_miniarm_bringup
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

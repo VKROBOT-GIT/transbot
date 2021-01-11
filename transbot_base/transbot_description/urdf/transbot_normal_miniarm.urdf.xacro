@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<robot name="transbot_miniarm" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- Include Transbot Waffle URDF -->
+  <xacro:include filename="$(find transbot_description)/urdf/transbot_normal.urdf.xacro"/>
+
+  <!-- Include MINIARM URDF -->
+  <xacro:include filename="$(find transbot_description)/urdf/miniarm.urdf.xacro"/>
+
+  <!-- Base fixed joint -->
+  <joint name="base_fixed" type="fixed">
+    <origin xyz="-0.04575 0.0 0.206" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="link1"/>
+  </joint>
+
+</robot>

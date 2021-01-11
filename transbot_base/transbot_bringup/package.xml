@@ -25,4 +25,8 @@
   <exec_depend>hls_lfcd_lds_driver</exec_depend>
   <!-- <exec_depend>realsense_camera</exec_depend> for transbot Waffle using Intel RealSense Camera -->
   <!-- <exec_depend>raspicam_node</exec_depend> for transbot Waffle Pi using Raspberry Pi Camera -->
+  <depend>actionlib</depend>
+  <depend>control_msgs</depend>
+  <depend>trajectory_msgs</depend>
+  <depend>moveit_msgs</depend>
 </package>
