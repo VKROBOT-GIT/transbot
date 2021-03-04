@@ -64,8 +64,10 @@ bool TransbotFake::init()
     robot_radius_     = 0.220;
   }
   
-  nh_.param("wheel_left_joint_name", joint_states_name_[LEFT],  std::string("wheel_left_joint"));
-  nh_.param("wheel_right_joint_name", joint_states_name_[RIGHT],  std::string("wheel_right_joint"));
+  nh_.param("wheel_left_joint_name", joint_states_name_[LEFT],  std::string("wheel_left_rear_joint"));
+  nh_.param("wheel_right_joint_name", joint_states_name_[RIGHT], std::string("wheel_right_rear_joint"));
+  nh_.param("wheel_left__front_joint_name", joint_states_name_[LEFT_FRONT],  std::string("wheel_left_front_joint"));  //for mecanum abd onmi driver mode
+  nh_.param("wheel_right_front_joint_name", joint_states_name_[RIGHT_FRONT], std::string("wheel_right_front_joint")); //for mecanum abd onmi driver mode
   nh_.param("joint_states_frame", joint_states_.header.frame_id, std::string("base_footprint"));
   nh_.param("odom_frame", odom_.header.frame_id, std::string("odom"));
   nh_.param("base_frame", odom_.child_frame_id, std::string("base_footprint"));
@@ -100,9 +102,11 @@ bool TransbotFake::init()
 
   joint_states_.name.push_back(joint_states_name_[LEFT]);
   joint_states_.name.push_back(joint_states_name_[RIGHT]);
-  joint_states_.position.resize(2,0.0);
-  joint_states_.velocity.resize(2,0.0);
-  joint_states_.effort.resize(2,0.0);
+  joint_states_.name.push_back(joint_states_name_[LEFT_FRONT]);
+  joint_states_.name.push_back(joint_states_name_[RIGHT_FRONT]);
+  joint_states_.position.resize(4,0.0);
+  joint_states_.velocity.resize(4,0.0);
+  joint_states_.effort.resize(4,0.0);
 
   // initialize publishers
   joint_states_pub_ = nh_.advertise<sensor_msgs::JointState>("joint_states", 100);

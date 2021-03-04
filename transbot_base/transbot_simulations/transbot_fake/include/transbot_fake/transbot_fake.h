@@ -40,6 +40,8 @@
 
 #define LEFT                            0
 #define RIGHT                           1
+#define LEFT_FRONT                      2
+#define RIGHT_FRONT                     3
 
 #define MAX_LINEAR_VELOCITY             0.22   // m/s
 #define MAX_ANGULAR_VELOCITY            2.84   // rad/s
@@ -95,7 +97,7 @@ class TransbotFake
   float  odom_vel_[3];
   double pose_cov_[36];
 
-  std::string joint_states_name_[2];
+  std::string joint_states_name_[4];
 
   double last_position_[2];
   double last_velocity_[2];
