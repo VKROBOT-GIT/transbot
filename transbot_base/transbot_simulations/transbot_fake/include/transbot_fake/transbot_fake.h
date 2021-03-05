@@ -97,7 +97,7 @@ class TransbotFake
   float  odom_vel_[3];
   double pose_cov_[36];
 
-  std::string joint_states_name_[4];
+  std::string joint_states_name_[2];
 
   double last_position_[2];
   double last_velocity_[2];

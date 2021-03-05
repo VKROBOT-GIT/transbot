@@ -100,7 +100,7 @@
       </inertial>
   </link>
 
-<joint name="wheel_left_front_joint" type="continuous">
+<joint name="wheel_left_front_joint" type="fixed">
     <parent link="base_link"/>
     <child link="wheel_left_front_link"/>
     <origin xyz="-0.0915 0.1155 0.01625" rpy="-1.57 0 0"/>
@@ -110,7 +110,7 @@
   <link name="wheel_left_front_link">
   </link>
 
-  <joint name="wheel_right_front_joint" type="continuous">
+  <joint name="wheel_right_front_joint" type="fixed">
     <parent link="base_link"/>
     <child link="wheel_right_front_link"/>
     <origin xyz="-0.0915 -0.1155 0.01625" rpy="-1.57 0 0"/>
