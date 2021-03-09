@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot name="transbot_miniarm" xmlns:xacro="http://ros.org/wiki/xacro">
 
-  <!-- Include Transbot Waffle URDF -->
+  <!-- Include Transbot URDF -->
   <xacro:include filename="$(find transbot_description)/urdf/transbot_normal.urdf.xacro"/>
 
   <!-- Include MINIARM URDF -->
