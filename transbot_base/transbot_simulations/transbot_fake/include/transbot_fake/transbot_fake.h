@@ -88,7 +88,7 @@ class TransbotFake
   nav_msgs::Odometry odom_;
   tf::TransformBroadcaster tf_broadcaster_;
 
-  double wheel_speed_cmd_[2];
+  double wheel_speed_cmd_[4];
   double goal_linear_velocity_;
   double goal_angular_velocity_;
   double cmd_vel_timeout_;
@@ -97,10 +97,10 @@ class TransbotFake
   float  odom_vel_[3];
   double pose_cov_[36];
 
-  std::string joint_states_name_[2];
+  std::string joint_states_name_[4];
 
-  double last_position_[2];
-  double last_velocity_[2];
+  double last_position_[4];
+  double last_velocity_[4];
 
   double wheel_seperation_;
   double turning_radius_;

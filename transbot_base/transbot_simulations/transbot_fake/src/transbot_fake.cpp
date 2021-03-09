@@ -66,6 +66,8 @@ bool TransbotFake::init()
   
   nh_.param("wheel_left_joint_name", joint_states_name_[LEFT],  std::string("wheel_left_rear_joint"));
   nh_.param("wheel_right_joint_name", joint_states_name_[RIGHT], std::string("wheel_right_rear_joint"));
+  nh_.param("wheel_left_front_joint_name", joint_states_name_[LEFT_FRONT],  std::string("wheel_left_front_joint"));
+  nh_.param("wheel_right_front_joint_name", joint_states_name_[RIGHT_FRONT], std::string("wheel_right_front_joint"));
   nh_.param("joint_states_frame", joint_states_.header.frame_id, std::string("base_footprint"));
   nh_.param("odom_frame", odom_.header.frame_id, std::string("odom"));
   nh_.param("base_frame", odom_.child_frame_id, std::string("base_footprint"));
@@ -73,13 +75,19 @@ bool TransbotFake::init()
   // initialize variables
   wheel_speed_cmd_[LEFT]  = 0.0;
   wheel_speed_cmd_[RIGHT] = 0.0;
+  wheel_speed_cmd_[LEFT_FRONT]  = 0.0;
+  wheel_speed_cmd_[RIGHT_FRONT] = 0.0;
   goal_linear_velocity_   = 0.0;
   goal_angular_velocity_  = 0.0;
   cmd_vel_timeout_        = 1.0;
   last_position_[LEFT]    = 0.0;
   last_position_[RIGHT]   = 0.0;
+  last_position_[LEFT_FRONT]    = 0.0;
+  last_position_[RIGHT_FRONT]   = 0.0;
   last_velocity_[LEFT]    = 0.0;
   last_velocity_[RIGHT]   = 0.0;
+  last_velocity_[LEFT_FRONT]    = 0.0;
+  last_velocity_[RIGHT_FRONT]   = 0.0;
 
   double pcov[36] = { 0.1,   0,   0,   0,   0, 0,
                         0, 0.1,   0,   0,   0, 0,
@@ -100,9 +108,11 @@ bool TransbotFake::init()
 
   joint_states_.name.push_back(joint_states_name_[LEFT]);
   joint_states_.name.push_back(joint_states_name_[RIGHT]);
-  joint_states_.position.resize(2,0.0);
-  joint_states_.velocity.resize(2,0.0);
-  joint_states_.effort.resize(2,0.0);
+  joint_states_.name.push_back(joint_states_name_[LEFT_FRONT]);
+  joint_states_.name.push_back(joint_states_name_[RIGHT_FRONT]);
+  joint_states_.position.resize(4,0.0);
+  joint_states_.velocity.resize(4,0.0);
+  joint_states_.effort.resize(4,0.0);
 
   // initialize publishers
   joint_states_pub_ = nh_.advertise<sensor_msgs::JointState>("joint_states", 100);
@@ -198,8 +208,12 @@ void TransbotFake::updateJoint(void)
 {
   joint_states_.position[LEFT]  = last_position_[LEFT];
   joint_states_.position[RIGHT] = last_position_[RIGHT];
+  joint_states_.position[LEFT_FRONT]  = last_position_[LEFT_FRONT];
+  joint_states_.position[RIGHT_FRONT] = last_position_[RIGHT_FRONT];
   joint_states_.velocity[LEFT]  = last_velocity_[LEFT];
   joint_states_.velocity[RIGHT] = last_velocity_[RIGHT];
+  joint_states_.velocity[LEFT_FRONT]  = last_velocity_[LEFT_FRONT];
+  joint_states_.velocity[RIGHT_FRONT] = last_velocity_[RIGHT_FRONT];
 }
 
 /*******************************************************************************
@@ -229,6 +243,8 @@ bool TransbotFake::update()
   {
     wheel_speed_cmd_[LEFT]  = 0.0;
     wheel_speed_cmd_[RIGHT] = 0.0;
+    wheel_speed_cmd_[LEFT_FRONT] = 0.0;
+    wheel_speed_cmd_[RIGHT_FRONT] = 0.0;
   }
 
   // odom
